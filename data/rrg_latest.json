@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-10T12:16:51+00:00",
+  "generated_utc": "2026-11-10T15:01:17+00:00",
   "week_ending": "2026-11-06",
   "price_source": "Yahoo Finance",
   "benchmark": "SPY",
@@ -13,9 +13,19 @@
     {
       "ticker": "XLK",
       "name": "Technology",
+      "price": 164.74,
+      "tail_change_pct": -17.55,
       "rs_ratio": 102.61,
       "rs_momentum": 97.91,
       "quadrant": "Weakening",
+      "heading_deg": 211,
+      "heading_arrow": "\u2199",
+      "speed": 1.61,
+      "distance": 3.35,
+      "next_crossing": {
+        "weeks": 2.5,
+        "to": "Lagging"
+      },
       "tail": [
         {
           "week": "2026-10-02",
@@ -52,9 +62,16 @@
     {
       "ticker": "XLV",
       "name": "Health Care",
+      "price": 184.8,
+      "tail_change_pct": 11.2,
       "rs_ratio": 104.64,
       "rs_momentum": 102.78,
       "quadrant": "Leading",
+      "heading_deg": 27,
+      "heading_arrow": "\u2197",
+      "speed": 1.38,
+      "distance": 5.41,
+      "next_crossing": null,
       "tail": [
         {
           "week": "2026-10-02",
@@ -91,9 +108,19 @@
     {
       "ticker": "XLF",
       "name": "Financials",
+      "price": 57.16,
+      "tail_change_pct": 6.86,
       "rs_ratio": 99.26,
       "rs_momentum": 100.97,
       "quadrant": "Improving",
+      "heading_deg": 39,
+      "heading_arrow": "\u2197",
+      "speed": 1.15,
+      "distance": 1.22,
+      "next_crossing": {
+        "weeks": 1.1,
+        "to": "Leading"
+      },
       "tail": [
         {
           "week": "2026-10-02",
@@ -130,9 +157,19 @@
     {
       "ticker": "XLE",
       "name": "Energy",
+      "price": 61.62,
+      "tail_change_pct": -1.91,
       "rs_ratio": 106.87,
       "rs_momentum": 101.4,
       "quadrant": "Leading",
+      "heading_deg": 291,
+      "heading_arrow": "\u2193",
+      "speed": 1.27,
+      "distance": 7.01,
+      "next_crossing": {
+        "weeks": 4.4,
+        "to": "Weakening"
+      },
       "tail": [
         {
           "week": "2026-10-02",
@@ -169,9 +206,19 @@
     {
       "ticker": "XLY",
       "name": "Consumer Discretionary",
+      "price": 117.58,
+      "tail_change_pct": 6.85,
       "rs_ratio": 95.85,
       "rs_momentum": 101.52,
       "quadrant": "Improving",
+      "heading_deg": 39,
+      "heading_arrow": "\u2197",
+      "speed": 1.52,
+      "distance": 4.42,
+      "next_crossing": {
+        "weeks": 4.4,
+        "to": "Leading"
+      },
       "tail": [
         {
           "week": "2026-10-02",
@@ -208,9 +255,19 @@
     {
       "ticker": "XLP",
       "name": "Consumer Staples",
+      "price": 90.08,
+      "tail_change_pct": 11.86,
       "rs_ratio": 99.46,
       "rs_momentum": 102.49,
       "quadrant": "Improving",
+      "heading_deg": 32,
+      "heading_arrow": "\u2197",
+      "speed": 1.5,
+      "distance": 2.55,
+      "next_crossing": {
+        "weeks": 0.5,
+        "to": "Leading"
+      },
       "tail": [
         {
           "week": "2026-10-02",
@@ -247,9 +304,19 @@
     {
       "ticker": "XLI",
       "name": "Industrials",
+      "price": 162.67,
+      "tail_change_pct": -4.28,
       "rs_ratio": 95.98,
       "rs_momentum": 98.98,
       "quadrant": "Lagging",
+      "heading_deg": 78,
+      "heading_arrow": "\u2191",
+      "speed": 0.31,
+      "distance": 4.15,
+      "next_crossing": {
+        "weeks": 3.1,
+        "to": "Improving"
+      },
       "tail": [
         {
           "week": "2026-10-02",
@@ -286,9 +353,19 @@
     {
       "ticker": "XLB",
       "name": "Materials",
+      "price": 51.95,
+      "tail_change_pct": 6.32,
       "rs_ratio": 98.5,
       "rs_momentum": 101.03,
       "quadrant": "Improving",
+      "heading_deg": 40,
+      "heading_arrow": "\u2197",
+      "speed": 1.04,
+      "distance": 1.82,
+      "next_crossing": {
+        "weeks": 1.8,
+        "to": "Leading"
+      },
       "tail": [
         {
           "week": "2026-10-02",
@@ -325,9 +402,19 @@
     {
       "ticker": "XLU",
       "name": "Utilities",
+      "price": 43.13,
+      "tail_change_pct": 8.29,
       "rs_ratio": 94.78,
       "rs_momentum": 101.36,
       "quadrant": "Improving",
+      "heading_deg": 40,
+      "heading_arrow": "\u2197",
+      "speed": 1.31,
+      "distance": 5.39,
+      "next_crossing": {
+        "weeks": 5.4,
+        "to": "Leading"
+      },
       "tail": [
         {
           "week": "2026-10-02",
@@ -364,9 +451,19 @@
     {
       "ticker": "XLRE",
       "name": "Real Estate",
+      "price": 44.0,
+      "tail_change_pct": 7.82,
       "rs_ratio": 96.74,
       "rs_momentum": 100.75,
       "quadrant": "Improving",
+      "heading_deg": 44,
+      "heading_arrow": "\u2197",
+      "speed": 1.47,
+      "distance": 3.34,
+      "next_crossing": {
+        "weeks": 3.9,
+        "to": "Leading"
+      },
       "tail": [
         {
           "week": "2026-10-02",
@@ -403,9 +500,16 @@
     {
       "ticker": "XLC",
       "name": "Communication Services",
+      "price": 104.79,
+      "tail_change_pct": -5.01,
       "rs_ratio": 93.81,
       "rs_momentum": 99.78,
       "quadrant": "Lagging",
+      "heading_deg": 211,
+      "heading_arrow": "\u2199",
+      "speed": 0.57,
+      "distance": 6.2,
+      "next_crossing": null,
       "tail": [
         {
           "week": "2026-10-02",
