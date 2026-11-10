@@ -32,8 +32,13 @@ SECTORS = {
     "XLI": "Industrials", "XLB": "Materials", "XLU": "Utilities",
     "XLRE": "Real Estate", "XLC": "Communication Services",
 }
-WINDOW = 14   # weeks used to normalize RS and its momentum
-TAIL = 10     # weeks of tail shown on the chart
+# Calibrated Nov 10, 2026 against a StockCharts RRG screenshot (week ending Nov 6):
+# all 11 sectors within about 1-2.5 points; quadrants matched for 8 of 11, the
+# misses were sectors sitting close to a quadrant line.
+SHORT = 10    # weeks, short EMA of relative strength
+LONG = 40     # weeks, long EMA of relative strength
+MOM = 10      # weeks, EMA of RS-Ratio used for RS-Momentum
+TAIL = 6      # points on the chart tail (latest week + 5 prior), matches StockCharts' 5-week tail
 OUT = Path(__file__).resolve().parent.parent / "data"
 
 
@@ -88,16 +93,20 @@ def to_weekly(daily: pd.DataFrame) -> pd.DataFrame:
     return weekly
 
 
-def rrg(weekly: pd.DataFrame, window: int = WINDOW) -> dict[str, pd.DataFrame]:
-    """RS-Ratio and RS-Momentum approximation, both centred on 100."""
+def rrg(weekly: pd.DataFrame) -> dict[str, pd.DataFrame]:
+    """RS-Ratio and RS-Momentum approximation, both centred on 100.
+
+    RS-Ratio    = 100 * EMA(SHORT) of relative strength / EMA(LONG) of relative strength
+    RS-Momentum = 100 * RS-Ratio / EMA(MOM) of RS-Ratio
+    """
     out = {}
     bench = weekly[BENCHMARK]
     for t in SECTORS:
-        rs = 100 * weekly[t] / bench
-        ratio = 100 + (rs - rs.rolling(window).mean()) / rs.rolling(window).std(ddof=0)
-        roc = 100 * (ratio / ratio.shift(1) - 1)
-        mom = 100 + (roc - roc.rolling(window).mean()) / roc.rolling(window).std(ddof=0)
-        out[t] = pd.DataFrame({"rs_ratio": ratio, "rs_momentum": mom}).dropna()
+        rs = weekly[t] / bench
+        ratio = 100 * rs.ewm(span=SHORT, adjust=False).mean() / rs.ewm(span=LONG, adjust=False).mean()
+        mom = 100 * ratio / ratio.ewm(span=MOM, adjust=False).mean()
+        df = pd.DataFrame({"rs_ratio": ratio, "rs_momentum": mom})
+        out[t] = df.iloc[LONG:]  # skip the warm-up period
     return out
 
 
@@ -124,7 +133,7 @@ def main() -> None:
         "week_ending": as_of.strftime("%Y-%m-%d"),
         "price_source": source,
         "benchmark": BENCHMARK,
-        "window_weeks": WINDOW,
+        "settings_weeks": {"short": SHORT, "long": LONG, "momentum": MOM},
         "method": "Approximation of JdK RS-Ratio / RS-Momentum (not the proprietary RRG formula)",
         "sectors": [],
     }
