@@ -18,7 +18,7 @@ but will not match exactly.
 
 | File | Contents |
 |---|---|
-| `data/rrg_latest.json` | Latest week plus a 5-week tail per sector; read by the Monday report |
+| `data/rrg_latest.json` | Latest week, 5-week tail, price, 5-week change, heading, speed, distance and projected next quadrant crossing per sector; read by the Monday report |
 | `data/rrg_history.csv` | Every computed week, for checking how signals played out |
 | `data/prices_weekly.csv` | Weekly closes used in the calculation |
 

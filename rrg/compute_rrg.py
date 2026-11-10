@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import io
 import json
+import math
 import sys
 import time
 from datetime import datetime, timezone
@@ -116,6 +117,44 @@ def quadrant(ratio: float, mom: float) -> str:
     return "Improving" if mom >= 100 else "Lagging"
 
 
+ARROWS = ["→", "↗", "↑", "↖", "←", "↙", "↓", "↘"]
+CROSS_HORIZON = 8  # weeks; crossings projected further out than this are reported as "none soon"
+
+
+def direction(tail: pd.DataFrame) -> dict:
+    """Heading, speed, distance and projected next quadrant crossing.
+
+    Heading uses the average of the last two weekly steps to damp noise.
+    Speed is the length of the last weekly step. Distance is from the 100/100 centre.
+    The crossing is a straight-line projection at the current heading and pace,
+    so it is only a rough guide: rotations curve.
+    """
+    x, y = float(tail.rs_ratio.iloc[-1]), float(tail.rs_momentum.iloc[-1])
+    dx = (x - float(tail.rs_ratio.iloc[-3])) / 2
+    dy = (y - float(tail.rs_momentum.iloc[-3])) / 2
+    angle = math.degrees(math.atan2(dy, dx)) % 360
+    speed = math.hypot(x - tail.rs_ratio.iloc[-2], y - tail.rs_momentum.iloc[-2])
+    candidates = []
+    if dx and (100 - x) / dx > 0:
+        candidates.append(((100 - x) / dx, "x"))
+    if dy and (100 - y) / dy > 0:
+        candidates.append(((100 - y) / dy, "y"))
+    crossing = None
+    if candidates:
+        weeks, axis = min(candidates)
+        if weeks <= CROSS_HORIZON:
+            nx = 200 - x if axis == "x" else x   # mirror across the crossed line
+            ny = 200 - y if axis == "y" else y
+            crossing = {"weeks": round(weeks, 1), "to": quadrant(nx, ny)}
+    return {
+        "heading_deg": round(angle),
+        "heading_arrow": ARROWS[int(((angle + 22.5) % 360) // 45)],
+        "speed": round(float(speed), 2),
+        "distance": round(math.hypot(x - 100, y - 100), 2),
+        "next_crossing": crossing,
+    }
+
+
 def main() -> None:
     daily, source = get_prices()
     weekly = to_weekly(daily)
@@ -140,12 +179,16 @@ def main() -> None:
     for t, df in result.items():
         tail = df.loc[:as_of].tail(TAIL)
         last = tail.iloc[-1]
+        close = weekly[t].loc[:as_of]
         payload["sectors"].append({
             "ticker": t,
             "name": SECTORS[t],
+            "price": round(float(close.iloc[-1]), 2),
+            "tail_change_pct": round(float((close.iloc[-1] / close.iloc[-TAIL] - 1) * 100), 2),
             "rs_ratio": round(float(last.rs_ratio), 2),
             "rs_momentum": round(float(last.rs_momentum), 2),
             "quadrant": quadrant(last.rs_ratio, last.rs_momentum),
+            **direction(tail),
             "tail": [
                 {"week": d.strftime("%Y-%m-%d"),
                  "rs_ratio": round(float(r.rs_ratio), 2),
