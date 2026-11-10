@@ -1,7 +1,7 @@
 """
 Weekly sector rotation data for the Monday Rotation Report.
 
-Downloads about two years of daily prices for the 11 Select Sector SPDR ETFs
+Downloads about two years of daily prices from Yahoo Finance for the 11 Select Sector SPDR ETFs
 and SPY, converts them to weekly (Friday) closes, and computes an
 approximation of the JdK RS-Ratio and RS-Momentum used in Relative Rotation
 Graphs. The real RRG formula is proprietary; this is the commonly published
@@ -15,9 +15,9 @@ Outputs (in data/):
 """
 from __future__ import annotations
 
-import io
 import json
 import math
+import os
 import sys
 import time
 from datetime import datetime, timezone
@@ -52,25 +52,11 @@ def from_yahoo(tickers: list[str]) -> pd.DataFrame:
     return closes.dropna(how="all")
 
 
-def from_stooq(tickers: list[str]) -> pd.DataFrame:
-    import urllib.request
-    frames = {}
-    for t in tickers:
-        url = f"https://stooq.com/q/d/l/?s={t.lower()}.us&i=d"
-        with urllib.request.urlopen(url, timeout=30) as r:
-            text = r.read().decode()
-        d = pd.read_csv(io.StringIO(text), parse_dates=["Date"], index_col="Date")
-        frames[t] = d["Close"]
-        time.sleep(1)
-    df = pd.DataFrame(frames)
-    return df[df.index >= df.index.max() - pd.Timedelta(days=730)]
-
-
 def get_prices() -> tuple[pd.DataFrame, str]:
     tickers = list(SECTORS) + [BENCHMARK]
     errors = []
-    for name, fn in (("Yahoo Finance", from_yahoo), ("Stooq", from_stooq)):
-        for attempt in range(3):
+    for name, fn in (("Yahoo Finance", from_yahoo),):
+        for attempt in range(4):
             try:
                 px = fn(tickers)
                 missing = [t for t in tickers if t not in px or px[t].dropna().empty]
@@ -79,7 +65,7 @@ def get_prices() -> tuple[pd.DataFrame, str]:
                 return px, name
             except Exception as e:  # noqa: BLE001
                 errors.append(f"{name} attempt {attempt + 1}: {e}")
-                time.sleep(5 * (attempt + 1))
+                time.sleep(30 * (attempt + 1))
     sys.exit("Could not download prices:\n" + "\n".join(errors))
 
 
@@ -155,7 +141,23 @@ def direction(tail: pd.DataFrame) -> dict:
     }
 
 
+def already_current() -> bool:
+    """True if rrg_latest.json already covers the most recent completed Friday."""
+    f = OUT / "rrg_latest.json"
+    if os.environ.get("FORCE") == "1" or not f.exists():
+        return False
+    today = pd.Timestamp.now(tz="America/New_York").normalize().tz_localize(None)
+    # most recent Friday whose close has happened (Saturday onward counts the same week)
+    last_friday = today - pd.Timedelta(days=(today.weekday() - 4) % 7)
+    if today.weekday() == 4:
+        last_friday -= pd.Timedelta(days=7)
+    return json.loads(f.read_text()).get("week_ending", "") >= last_friday.strftime("%Y-%m-%d")
+
+
 def main() -> None:
+    if already_current():
+        print("Data already current; nothing to do.")
+        return
     daily, source = get_prices()
     weekly = to_weekly(daily)
     result = rrg(weekly)

@@ -2,9 +2,11 @@ name: Weekly sector RRG data
 
 on:
   schedule:
-    # Sundays 23:15 UTC (6:15 pm EST / 7:15 pm EDT)
+    # Sundays 23:15 UTC (6:15 pm EST), with two retries that exit early if the data is already current
     - cron: "15 23 * * 0"
-  workflow_dispatch: {}   # adds a "Run workflow" button on the Actions tab
+    - cron: "15 2 * * 1"
+    - cron: "15 5 * * 1"
+  workflow_dispatch: {}   # "Run workflow" button on the Actions tab; always recomputes
 
 permissions:
   contents: write
@@ -23,6 +25,8 @@ jobs:
         run: pip install -r rrg/requirements.txt
 
       - name: Compute RRG
+        env:
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: python rrg/compute_rrg.py
 
       - name: Save results
