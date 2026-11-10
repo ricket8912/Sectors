@@ -1,0 +1,34 @@
+name: Weekly sector RRG data
+
+on:
+  schedule:
+    # Sundays 23:15 UTC (6:15 pm EST / 7:15 pm EDT)
+    - cron: "15 23 * * 0"
+  workflow_dispatch: {}   # adds a "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  compute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install -r rrg/requirements.txt
+
+      - name: Compute RRG
+        run: python rrg/compute_rrg.py
+
+      - name: Save results
+        run: |
+          git config user.name "rrg-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "RRG data for week ending $(jq -r .week_ending data/rrg_latest.json)"
+          git push
