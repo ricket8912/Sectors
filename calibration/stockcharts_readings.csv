@@ -1,0 +1,23 @@
+week_ending,ticker,rs_ratio,rs_momentum,quadrant,note
+2026-11-06,XLE,107.0,103.9,Leading,read from screenshot +/-0.2
+2026-11-06,XLV,105.8,102.1,Leading,
+2026-11-06,XLK,101.1,98.2,Weakening,
+2026-11-06,XLF,100.4,99.5,Weakening,
+2026-11-06,XLI,95.1,98.9,Lagging,
+2026-11-06,XLRE,95.9,99.9,Lagging,
+2026-11-06,XLU,94.3,102.1,Improving,
+2026-11-06,XLC,96.4,101.2,Improving,
+2026-11-06,XLY,96.0,100.6,Improving,
+2026-11-06,XLB,97.6,101.0,Improving,
+2026-11-06,XLP,99.5,102.4,Improving,
+2026-11-13,XLE,106.9,102.8,Leading,read from screenshot +/-0.2
+2026-11-13,XLV,106.3,102.2,Leading,
+2026-11-13,XLP,100.3,102.95,Leading,
+2026-11-13,XLK,100.2,97.6,Weakening,
+2026-11-13,XLF,100.65,99.95,Weakening,
+2026-11-13,XLI,95.1,99.2,Lagging,
+2026-11-13,XLU,95.1,102.8,Improving,
+2026-11-13,XLRE,96.4,100.6,Improving,
+2026-11-13,XLC,96.7,101.3,Improving,
+2026-11-13,XLY,96.8,101.4,Improving,
+2026-11-13,XLB,97.9,101.2,Improving,
