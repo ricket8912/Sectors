@@ -1,7 +1,7 @@
 """
 Weekly sector rotation data for the Monday Rotation Report.
 
-Downloads about two years of daily prices from Yahoo Finance for the 11 Select Sector SPDR ETFs
+Downloads about five years of daily prices from Yahoo Finance for the 11 Select Sector SPDR ETFs
 and SPY, converts them to weekly (Friday) closes, and computes an
 approximation of the JdK RS-Ratio and RS-Momentum used in Relative Rotation
 Graphs. The real RRG formula is proprietary; this is the commonly published
@@ -12,6 +12,7 @@ Outputs (in data/):
   rrg_latest.json  - last TAIL weeks per sector, plus quadrant, for the report
   rrg_history.csv  - every computed week, for later backtesting
   prices_weekly.csv - the weekly closes used
+  top3_history.csv - each week's top-3 outlook picks, for tracking how they did
 """
 from __future__ import annotations
 
@@ -46,7 +47,7 @@ OUT = Path(__file__).resolve().parent.parent / "data"
 # ---------- price download ----------
 def from_yahoo(tickers: list[str]) -> pd.DataFrame:
     import yfinance as yf
-    df = yf.download(tickers, period="2y", interval="1d", auto_adjust=True,
+    df = yf.download(tickers, period="5y", interval="1d", auto_adjust=True,
                      progress=False, threads=False)
     closes = df["Close"] if isinstance(df.columns, pd.MultiIndex) else df[["Close"]]
     return closes.dropna(how="all")
@@ -141,6 +142,75 @@ def direction(tail: pd.DataFrame) -> dict:
     }
 
 
+OUTLOOK_SHRINK = 20  # weeks of weight given to the all-sector rate when a sector's own history is thin
+
+
+def outlook(weekly: pd.DataFrame, result: dict[str, pd.DataFrame], as_of: pd.Timestamp) -> tuple[dict, dict]:
+    """Historical odds of a positive next week, given each sector's current RRG setup.
+
+    Setup = quadrant + whether RS-Momentum rose or fell over the last week (8 setups).
+    For every past week we record each sector's setup and whether its price was higher
+    one week later. A sector's hit rate blends its own history in that setup with all
+    sectors' history in that setup (shrinkage), so thin samples don't produce extreme
+    numbers. This is a base rate from the past, not a forecast.
+    """
+    rows = []
+    for t, df in result.items():
+        close = weekly[t].reindex(df.index)
+        nxt = close.shift(-1) / close - 1
+        mom_up = df.rs_momentum.diff() > 0
+        for d in df.index:
+            q = quadrant(df.rs_ratio[d], df.rs_momentum[d])
+            rows.append((t, d, q, bool(mom_up[d]), nxt[d]))
+    h = pd.DataFrame(rows, columns=["ticker", "week", "quadrant", "mom_up", "next_ret"])
+    past = h[(h.week < as_of) & h.next_ret.notna()].copy()
+    past["pos"] = past.next_ret > 0
+    pooled = past.groupby(["quadrant", "mom_up"]).agg(rate=("pos", "mean"), n=("pos", "size"),
+                                                      avg=("next_ret", "mean"))
+    per = {}
+    for t in result:
+        cur = h[(h.ticker == t) & (h.week == as_of)].iloc[0]
+        key = (cur.quadrant, cur.mom_up)
+        own = past[(past.ticker == t) & (past.quadrant == key[0]) & (past.mom_up == key[1])]
+        pool_rate = float(pooled.loc[key, "rate"]) if key in pooled.index else float(past.pos.mean())
+        hit = (own.pos.sum() + OUTLOOK_SHRINK * pool_rate) / (len(own) + OUTLOOK_SHRINK)
+        per[t] = {
+            "setup": f"{key[0]}, momentum {'rising' if key[1] else 'falling'}",
+            "hit_rate": round(float(hit), 3),
+            "own_weeks": int(len(own)),
+            "own_rate": round(float(own.pos.mean()), 3) if len(own) else None,
+            "own_avg_next_week_pct": round(float(own.next_ret.mean() * 100), 2) if len(own) else None,
+            "all_sectors_rate": round(pool_rate, 3),
+            "all_sectors_weeks": int(pooled.loc[key, "n"]) if key in pooled.index else 0,
+            "sector_base_rate": round(float(past[past.ticker == t].pos.mean()), 3),
+        }
+    ranked = sorted(per, key=lambda t: (per[t]["hit_rate"], per[t]["own_avg_next_week_pct"] or 0), reverse=True)
+    setups = {f"{q}, momentum {'rising' if up else 'falling'}": {"rate": round(float(r.rate), 3), "weeks": int(r.n),
+              "avg_next_week_pct": round(float(r.avg * 100), 2)} for (q, up), r in pooled.iterrows()}
+    summary = {
+        "top3": ranked[:3],
+        "base_rate": round(float(past.pos.mean()), 3),
+        "history_from": past.week.min().strftime("%Y-%m-%d"),
+        "history_sector_weeks": int(len(past)),
+        "setups": setups,
+        "method": ("Share of past weeks a sector rose, when it was in the same quadrant with momentum moving "
+                   "the same way; blends the sector's own history with all sectors' (20-week weight). "
+                   "Historical base rate, not a forecast."),
+    }
+    return per, summary
+
+
+def save_top3(as_of: pd.Timestamp, summary: dict, per: dict) -> None:
+    f = OUT / "top3_history.csv"
+    row = pd.DataFrame([{"week_ending": as_of.strftime("%Y-%m-%d"),
+                         **{f"pick{i + 1}": t for i, t in enumerate(summary["top3"])},
+                         **{f"hit{i + 1}": per[t]["hit_rate"] for i, t in enumerate(summary["top3"])}}])
+    if f.exists():
+        old = pd.read_csv(f)
+        row = pd.concat([old[old.week_ending != row.week_ending[0]], row])
+    row.sort_values("week_ending").to_csv(f, index=False)
+
+
 def already_current() -> bool:
     """True if rrg_latest.json already covers the most recent completed Friday."""
     f = OUT / "rrg_latest.json"
@@ -178,6 +248,8 @@ def main() -> None:
         "method": "Approximation of JdK RS-Ratio / RS-Momentum (not the proprietary RRG formula)",
         "sectors": [],
     }
+    per, summary = outlook(weekly, result, as_of)
+    payload["outlook"] = summary
     for t, df in result.items():
         tail = df.loc[:as_of].tail(TAIL)
         last = tail.iloc[-1]
@@ -191,6 +263,7 @@ def main() -> None:
             "rs_momentum": round(float(last.rs_momentum), 2),
             "quadrant": quadrant(last.rs_ratio, last.rs_momentum),
             **direction(tail),
+            "outlook": per[t],
             "tail": [
                 {"week": d.strftime("%Y-%m-%d"),
                  "rs_ratio": round(float(r.rs_ratio), 2),
@@ -199,7 +272,9 @@ def main() -> None:
             ],
         })
     (OUT / "rrg_latest.json").write_text(json.dumps(payload, indent=2))
+    save_top3(as_of, summary, per)
     print(f"Week ending {payload['week_ending']} from {source}")
+    print(f"Top 3: {summary['top3']}  (base rate {summary['base_rate']})")
     for s in payload["sectors"]:
         print(f"  {s['ticker']:5} {s['rs_ratio']:7.2f} {s['rs_momentum']:7.2f}  {s['quadrant']}")
 
