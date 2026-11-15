@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-14T17:18:28+00:00",
+  "generated_utc": "2026-11-15T15:02:03+00:00",
   "week_ending": "2026-11-13",
   "price_source": "Yahoo Finance",
   "benchmark": "SPY",
@@ -15,46 +15,56 @@
       "name": "Technology",
       "price": 170.28,
       "tail_change_pct": -14.34,
-      "rs_ratio": 101.62,
+      "rs_ratio": 101.61,
       "rs_momentum": 97.5,
       "quadrant": "Weakening",
       "heading_deg": 208,
       "heading_arrow": "\u2199",
       "speed": 1.08,
-      "distance": 2.98,
+      "distance": 2.97,
       "next_crossing": {
         "weeks": 1.4,
         "to": "Lagging"
       },
+      "outlook": {
+        "setup": "Weakening, momentum falling",
+        "hit_rate": 0.508,
+        "own_weeks": 40,
+        "own_rate": 0.5,
+        "own_avg_next_week_pct": 0.42,
+        "all_sectors_rate": 0.525,
+        "all_sectors_weeks": 219,
+        "sector_base_rate": 0.577
+      },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 106.18,
-          "rs_momentum": 100.3
+          "rs_ratio": 106.17,
+          "rs_momentum": 100.31
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 105.36,
+          "rs_ratio": 105.35,
           "rs_momentum": 99.62
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 104.72,
+          "rs_ratio": 104.71,
           "rs_momentum": 99.19
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 103.98,
+          "rs_ratio": 103.97,
           "rs_momentum": 98.76
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 102.61,
+          "rs_ratio": 102.6,
           "rs_momentum": 97.91
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 101.62,
+          "rs_ratio": 101.61,
           "rs_momentum": 97.5
         }
       ]
@@ -64,44 +74,54 @@
       "name": "Health Care",
       "price": 188.85,
       "tail_change_pct": 10.56,
-      "rs_ratio": 105.5,
-      "rs_momentum": 102.94,
+      "rs_ratio": 105.42,
+      "rs_momentum": 102.96,
       "quadrant": "Leading",
       "heading_deg": 20,
       "heading_arrow": "\u2192",
       "speed": 0.87,
-      "distance": 6.23,
+      "distance": 6.17,
       "next_crossing": null,
+      "outlook": {
+        "setup": "Leading, momentum rising",
+        "hit_rate": 0.557,
+        "own_weeks": 15,
+        "own_rate": 0.533,
+        "own_avg_next_week_pct": 0.3,
+        "all_sectors_rate": 0.574,
+        "all_sectors_weeks": 230,
+        "sector_base_rate": 0.568
+      },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 100.65,
-          "rs_momentum": 100.53
+          "rs_ratio": 100.55,
+          "rs_momentum": 100.56
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 101.41,
-          "rs_momentum": 101.05
+          "rs_ratio": 101.32,
+          "rs_momentum": 101.08
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 102.25,
-          "rs_momentum": 101.54
+          "rs_ratio": 102.16,
+          "rs_momentum": 101.57
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 103.4,
-          "rs_momentum": 102.18
+          "rs_ratio": 103.31,
+          "rs_momentum": 102.21
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 104.64,
-          "rs_momentum": 102.78
+          "rs_ratio": 104.56,
+          "rs_momentum": 102.8
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 105.5,
-          "rs_momentum": 102.94
+          "rs_ratio": 105.42,
+          "rs_momentum": 102.96
         }
       ]
     },
@@ -110,47 +130,54 @@
       "name": "Financials",
       "price": 58.68,
       "tail_change_pct": 7.22,
-      "rs_ratio": 99.98,
-      "rs_momentum": 101.39,
-      "quadrant": "Improving",
+      "rs_ratio": 100.02,
+      "rs_momentum": 101.38,
+      "quadrant": "Leading",
       "heading_deg": 35,
       "heading_arrow": "\u2197",
       "speed": 0.83,
-      "distance": 1.39,
-      "next_crossing": {
-        "weeks": 0.0,
-        "to": "Leading"
+      "distance": 1.38,
+      "next_crossing": null,
+      "outlook": {
+        "setup": "Leading, momentum rising",
+        "hit_rate": 0.598,
+        "own_weeks": 31,
+        "own_rate": 0.613,
+        "own_avg_next_week_pct": 0.38,
+        "all_sectors_rate": 0.574,
+        "all_sectors_weeks": 230,
+        "sector_base_rate": 0.605
       },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 97.44,
-          "rs_momentum": 99.26
+          "rs_ratio": 97.49,
+          "rs_momentum": 99.24
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 97.6,
-          "rs_momentum": 99.52
+          "rs_ratio": 97.65,
+          "rs_momentum": 99.51
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 97.89,
-          "rs_momentum": 99.85
+          "rs_ratio": 97.94,
+          "rs_momentum": 99.84
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 98.36,
-          "rs_momentum": 100.27
+          "rs_ratio": 98.4,
+          "rs_momentum": 100.25
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 99.26,
-          "rs_momentum": 100.97
+          "rs_ratio": 99.31,
+          "rs_momentum": 100.96
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 99.98,
-          "rs_momentum": 101.39
+          "rs_ratio": 100.02,
+          "rs_momentum": 101.38
         }
       ]
     },
@@ -159,46 +186,56 @@
       "name": "Energy",
       "price": 64.96,
       "tail_change_pct": -0.18,
-      "rs_ratio": 106.6,
+      "rs_ratio": 106.58,
       "rs_momentum": 100.94,
       "quadrant": "Leading",
       "heading_deg": 236,
       "heading_arrow": "\u2199",
       "speed": 0.53,
-      "distance": 6.66,
+      "distance": 6.65,
       "next_crossing": {
         "weeks": 1.3,
         "to": "Weakening"
       },
+      "outlook": {
+        "setup": "Leading, momentum falling",
+        "hit_rate": 0.594,
+        "own_weeks": 14,
+        "own_rate": 0.643,
+        "own_avg_next_week_pct": 0.76,
+        "all_sectors_rate": 0.561,
+        "all_sectors_weeks": 264,
+        "sector_base_rate": 0.618
+      },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 104.45,
-          "rs_momentum": 100.73
+          "rs_ratio": 104.43,
+          "rs_momentum": 100.74
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 105.54,
+          "rs_ratio": 105.52,
           "rs_momentum": 101.46
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 106.62,
-          "rs_momentum": 102.03
+          "rs_ratio": 106.6,
+          "rs_momentum": 102.04
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 107.61,
-          "rs_momentum": 102.42
+          "rs_ratio": 107.59,
+          "rs_momentum": 102.43
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 106.87,
+          "rs_ratio": 106.85,
           "rs_momentum": 101.4
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 106.6,
+          "rs_ratio": 106.58,
           "rs_momentum": 100.94
         }
       ]
@@ -208,47 +245,57 @@
       "name": "Consumer Discretionary",
       "price": 119.98,
       "tail_change_pct": 6.32,
-      "rs_ratio": 96.74,
-      "rs_momentum": 102.01,
+      "rs_ratio": 96.77,
+      "rs_momentum": 102.0,
       "quadrant": "Improving",
       "heading_deg": 34,
       "heading_arrow": "\u2197",
       "speed": 1.02,
-      "distance": 3.83,
+      "distance": 3.8,
       "next_crossing": {
         "weeks": 3.1,
         "to": "Leading"
       },
+      "outlook": {
+        "setup": "Improving, momentum rising",
+        "hit_rate": 0.556,
+        "own_weeks": 37,
+        "own_rate": 0.541,
+        "own_avg_next_week_pct": 0.24,
+        "all_sectors_rate": 0.585,
+        "all_sectors_weeks": 354,
+        "sector_base_rate": 0.555
+      },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 93.33,
-          "rs_momentum": 99.22
+          "rs_ratio": 93.36,
+          "rs_momentum": 99.21
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 93.58,
-          "rs_momentum": 99.58
+          "rs_ratio": 93.62,
+          "rs_momentum": 99.57
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 93.96,
-          "rs_momentum": 99.99
+          "rs_ratio": 94.0,
+          "rs_momentum": 99.98
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 94.65,
+          "rs_ratio": 94.68,
           "rs_momentum": 100.58
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 95.85,
-          "rs_momentum": 101.52
+          "rs_ratio": 95.88,
+          "rs_momentum": 101.51
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 96.74,
-          "rs_momentum": 102.01
+          "rs_ratio": 96.77,
+          "rs_momentum": 102.0
         }
       ]
     },
@@ -257,44 +304,54 @@
       "name": "Consumer Staples",
       "price": 92.35,
       "tail_change_pct": 10.69,
-      "rs_ratio": 100.45,
-      "rs_momentum": 102.86,
+      "rs_ratio": 100.41,
+      "rs_momentum": 102.87,
       "quadrant": "Leading",
       "heading_deg": 26,
       "heading_arrow": "\u2197",
       "speed": 1.06,
-      "distance": 2.89,
+      "distance": 2.9,
       "next_crossing": null,
+      "outlook": {
+        "setup": "Leading, momentum rising",
+        "hit_rate": 0.516,
+        "own_weeks": 10,
+        "own_rate": 0.4,
+        "own_avg_next_week_pct": -0.27,
+        "all_sectors_rate": 0.574,
+        "all_sectors_weeks": 230,
+        "sector_base_rate": 0.591
+      },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 95.24,
-          "rs_momentum": 99.36
+          "rs_ratio": 95.19,
+          "rs_momentum": 99.37
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 96.21,
-          "rs_momentum": 100.3
+          "rs_ratio": 96.16,
+          "rs_momentum": 100.32
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 97.15,
-          "rs_momentum": 101.05
+          "rs_ratio": 97.1,
+          "rs_momentum": 101.07
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 98.17,
-          "rs_momentum": 101.72
+          "rs_ratio": 98.12,
+          "rs_momentum": 101.73
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 99.46,
-          "rs_momentum": 102.49
+          "rs_ratio": 99.42,
+          "rs_momentum": 102.5
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 100.45,
-          "rs_momentum": 102.86
+          "rs_ratio": 100.41,
+          "rs_momentum": 102.87
         }
       ]
     },
@@ -303,46 +360,56 @@
       "name": "Industrials",
       "price": 168.78,
       "tail_change_pct": -0.28,
-      "rs_ratio": 96.22,
+      "rs_ratio": 96.23,
       "rs_momentum": 99.36,
       "quadrant": "Lagging",
       "heading_deg": 66,
       "heading_arrow": "\u2197",
       "speed": 0.45,
-      "distance": 3.84,
+      "distance": 3.83,
       "next_crossing": {
         "weeks": 1.9,
         "to": "Improving"
       },
+      "outlook": {
+        "setup": "Lagging, momentum rising",
+        "hit_rate": 0.636,
+        "own_weeks": 43,
+        "own_rate": 0.674,
+        "own_avg_next_week_pct": 0.64,
+        "all_sectors_rate": 0.554,
+        "all_sectors_weeks": 520,
+        "sector_base_rate": 0.577
+      },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 96.37,
+          "rs_ratio": 96.38,
           "rs_momentum": 98.12
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 96.16,
+          "rs_ratio": 96.17,
           "rs_momentum": 98.28
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 95.84,
+          "rs_ratio": 95.85,
           "rs_momentum": 98.32
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 95.91,
+          "rs_ratio": 95.92,
           "rs_momentum": 98.68
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 95.98,
+          "rs_ratio": 95.99,
           "rs_momentum": 98.98
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 96.22,
+          "rs_ratio": 96.23,
           "rs_momentum": 99.36
         }
       ]
@@ -352,47 +419,57 @@
       "name": "Materials",
       "price": 52.23,
       "tail_change_pct": 5.66,
-      "rs_ratio": 98.88,
-      "rs_momentum": 101.17,
+      "rs_ratio": 98.84,
+      "rs_momentum": 101.18,
       "quadrant": "Improving",
       "heading_deg": 32,
       "heading_arrow": "\u2197",
       "speed": 0.41,
-      "distance": 1.61,
+      "distance": 1.66,
       "next_crossing": {
-        "weeks": 1.8,
+        "weeks": 1.9,
         "to": "Leading"
+      },
+      "outlook": {
+        "setup": "Improving, momentum rising",
+        "hit_rate": 0.503,
+        "own_weeks": 43,
+        "own_rate": 0.465,
+        "own_avg_next_week_pct": -0.08,
+        "all_sectors_rate": 0.585,
+        "all_sectors_weeks": 354,
+        "sector_base_rate": 0.518
       },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 96.05,
-          "rs_momentum": 98.57
+          "rs_ratio": 95.99,
+          "rs_momentum": 98.59
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 96.39,
-          "rs_momentum": 99.11
+          "rs_ratio": 96.33,
+          "rs_momentum": 99.13
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 96.84,
-          "rs_momentum": 99.65
+          "rs_ratio": 96.79,
+          "rs_momentum": 99.67
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 97.67,
-          "rs_momentum": 100.41
+          "rs_ratio": 97.62,
+          "rs_momentum": 100.43
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 98.5,
-          "rs_momentum": 101.03
+          "rs_ratio": 98.45,
+          "rs_momentum": 101.05
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 98.88,
-          "rs_momentum": 101.17
+          "rs_ratio": 98.84,
+          "rs_momentum": 101.18
         }
       ]
     },
@@ -401,21 +478,31 @@
       "name": "Utilities",
       "price": 44.04,
       "tail_change_pct": 6.35,
-      "rs_ratio": 95.57,
+      "rs_ratio": 95.58,
       "rs_momentum": 101.8,
       "quadrant": "Improving",
       "heading_deg": 34,
       "heading_arrow": "\u2197",
       "speed": 0.9,
-      "distance": 4.78,
+      "distance": 4.77,
       "next_crossing": {
         "weeks": 4.8,
         "to": "Leading"
       },
+      "outlook": {
+        "setup": "Improving, momentum rising",
+        "hit_rate": 0.563,
+        "own_weeks": 31,
+        "own_rate": 0.548,
+        "own_avg_next_week_pct": 0.47,
+        "all_sectors_rate": 0.585,
+        "all_sectors_weeks": 354,
+        "sector_base_rate": 0.55
+      },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 91.64,
+          "rs_ratio": 91.65,
           "rs_momentum": 98.13
         },
         {
@@ -435,12 +522,12 @@
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 94.78,
+          "rs_ratio": 94.79,
           "rs_momentum": 101.36
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 95.57,
+          "rs_ratio": 95.58,
           "rs_momentum": 101.8
         }
       ]
@@ -450,46 +537,56 @@
       "name": "Real Estate",
       "price": 44.37,
       "tail_change_pct": 6.63,
-      "rs_ratio": 97.39,
+      "rs_ratio": 97.37,
       "rs_momentum": 101.16,
       "quadrant": "Improving",
-      "heading_deg": 39,
+      "heading_deg": 38,
       "heading_arrow": "\u2197",
       "speed": 0.77,
-      "distance": 2.85,
+      "distance": 2.88,
       "next_crossing": {
         "weeks": 3.0,
         "to": "Leading"
       },
+      "outlook": {
+        "setup": "Improving, momentum rising",
+        "hit_rate": 0.571,
+        "own_weeks": 39,
+        "own_rate": 0.564,
+        "own_avg_next_week_pct": 0.09,
+        "all_sectors_rate": 0.585,
+        "all_sectors_weeks": 354,
+        "sector_base_rate": 0.523
+      },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 94.63,
-          "rs_momentum": 98.17
+          "rs_ratio": 94.61,
+          "rs_momentum": 98.18
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 94.77,
-          "rs_momentum": 98.61
+          "rs_ratio": 94.74,
+          "rs_momentum": 98.62
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 95.09,
-          "rs_momentum": 99.14
+          "rs_ratio": 95.07,
+          "rs_momentum": 99.15
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 95.65,
-          "rs_momentum": 99.77
+          "rs_ratio": 95.63,
+          "rs_momentum": 99.78
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 96.74,
+          "rs_ratio": 96.72,
           "rs_momentum": 100.75
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 97.39,
+          "rs_ratio": 97.37,
           "rs_momentum": 101.16
         }
       ]
@@ -499,46 +596,109 @@
       "name": "Communication Services",
       "price": 108.69,
       "tail_change_pct": -1.53,
-      "rs_ratio": 94.29,
+      "rs_ratio": 94.31,
       "rs_momentum": 100.24,
       "quadrant": "Improving",
       "heading_deg": 47,
       "heading_arrow": "\u2197",
       "speed": 0.66,
-      "distance": 5.72,
+      "distance": 5.7,
       "next_crossing": null,
+      "outlook": {
+        "setup": "Improving, momentum rising",
+        "hit_rate": 0.615,
+        "own_weeks": 12,
+        "own_rate": 0.667,
+        "own_avg_next_week_pct": 1.14,
+        "all_sectors_rate": 0.585,
+        "all_sectors_weeks": 354,
+        "sector_base_rate": 0.582
+      },
       "tail": [
         {
           "week": "2026-10-09",
-          "rs_ratio": 94.31,
+          "rs_ratio": 94.33,
           "rs_momentum": 100.21
         },
         {
           "week": "2026-10-16",
-          "rs_ratio": 94.52,
-          "rs_momentum": 100.36
+          "rs_ratio": 94.54,
+          "rs_momentum": 100.35
         },
         {
           "week": "2026-10-23",
-          "rs_ratio": 94.22,
+          "rs_ratio": 94.24,
           "rs_momentum": 100.03
         },
         {
           "week": "2026-10-30",
-          "rs_ratio": 93.44,
-          "rs_momentum": 99.35
+          "rs_ratio": 93.46,
+          "rs_momentum": 99.34
         },
         {
           "week": "2026-11-06",
-          "rs_ratio": 93.81,
+          "rs_ratio": 93.83,
           "rs_momentum": 99.78
         },
         {
           "week": "2026-11-13",
-          "rs_ratio": 94.29,
+          "rs_ratio": 94.31,
           "rs_momentum": 100.24
         }
       ]
     }
-  ]
+  ],
+  "outlook": {
+    "top3": [
+      "XLI",
+      "XLC",
+      "XLF"
+    ],
+    "base_rate": 0.569,
+    "history_from": "2022-08-26",
+    "history_sector_weeks": 2420,
+    "setups": {
+      "Improving, momentum falling": {
+        "rate": 0.576,
+        "weeks": 203,
+        "avg_next_week_pct": 0.09
+      },
+      "Improving, momentum rising": {
+        "rate": 0.585,
+        "weeks": 354,
+        "avg_next_week_pct": 0.24
+      },
+      "Lagging, momentum falling": {
+        "rate": 0.596,
+        "weeks": 503,
+        "avg_next_week_pct": 0.42
+      },
+      "Lagging, momentum rising": {
+        "rate": 0.554,
+        "weeks": 520,
+        "avg_next_week_pct": 0.3
+      },
+      "Leading, momentum falling": {
+        "rate": 0.561,
+        "weeks": 264,
+        "avg_next_week_pct": 0.28
+      },
+      "Leading, momentum rising": {
+        "rate": 0.574,
+        "weeks": 230,
+        "avg_next_week_pct": 0.25
+      },
+      "Weakening, momentum falling": {
+        "rate": 0.525,
+        "weeks": 219,
+        "avg_next_week_pct": 0.11
+      },
+      "Weakening, momentum rising": {
+        "rate": 0.559,
+        "weeks": 127,
+        "avg_next_week_pct": 0.1
+      }
+    },
+    "method": "Share of past weeks a sector rose, when it was in the same quadrant with momentum moving the same way; blends the sector's own history with all sectors' (20-week weight). Historical base rate, not a forecast."
+  }
 }
